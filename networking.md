@@ -12,5 +12,5 @@ Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
 ```
 The host address is the Gateway corresponding to destination 0.0.0.0, in this case 192.168.1.1. The guest machine can connect to the host via this gateway.
 
-###Example with WP site and two VMs
-An example was when I had to VMs running on one host: a webserver and a database server. I wanted to connect the two VMs. The database server was using port forwarding to run on the host machine's localhost at port 3306, therefore, in order to connect the VMs, I simply had to get the webserver VM to connect to the host. By writing in the host's gateway address into the host section of the database url, the webserver was able to find the database server and connect.
+###Example with WordPress site and two VMs
+An example was when I had two VMs running on one host: a webserver and a database server. I wanted to connect the two VMs. The database server was using port forwarding to run on the host machine's localhost at port 3306, therefore, in order to connect the VMs, I simply had to get the webserver VM to connect to the host. By writing the host's gateway address into the host section of the database url in the webserver's connection options, the webserver was able to find the database server and connect.
