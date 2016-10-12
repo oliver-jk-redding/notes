@@ -14,3 +14,31 @@ The host address is the Gateway corresponding to destination 0.0.0.0, in this ca
 
 ###Example with WordPress site and two VMs
 An example was when I had two VMs running on one host: a webserver and a database server. I wanted to connect the two VMs. The database server was using port forwarding to run on the host machine's localhost at port 3306, therefore, in order to connect the VMs, I simply had to get the webserver VM to connect to the host. By writing the host's gateway address into the host section of the database url in the webserver's connection options, the webserver was able to find the database server and connect.
+
+##Example nginx server configuration for HTTPS redirect
+```bash
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server ipv6only=on;
+
+	listen 443 ssl;
+
+	server_name example.com;
+
+	ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
+
+	root /usr/share/nginx/html;
+	index index.html index.htm;
+	server_name localhost;
+
+	location ~ \.well-known\/acme-challenge\/.+ {
+		try_files $uri $uri/ =404;
+	}
+	
+	location / {
+		return 301 $scheme://www.example.com$request_uri;
+	}
+	
+}
+```
