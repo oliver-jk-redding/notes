@@ -42,3 +42,24 @@ server {
 	
 }
 ```
+
+If hosting the app on Heroku, in addition to the above configuration, you will need the following records and config:
+```bash
+APEX = @ => example.com
+CNAME = @ => www.example.com
+CNAME = @ => www.example.com.herokudns.com
+```
+
+Heroku config vars:
+```bash
+ACME_KEY_1 = 123example123
+ACME_TOKEN_1 = 123example123
+HOME_URL = https://www.example.com
+SITE_URL = https://www.example.com
+```
+
+In order to run a proxy (not necessary for this task), you can add the following lines to the location block:
+```bash
+proxy_set_header Host $host;
+proxy_pass https://example.herokuapp.com/;
+```
