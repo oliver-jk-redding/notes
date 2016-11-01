@@ -32,7 +32,7 @@ mysql -u root -proot wordpress < dump.sql
 Login to the instance on the AWS console and edit the security group for the instance. Set TCP traffic to allow for connections from either local IP address or all IP addresses (less secure but more flexible).
 2. **Install mysql on instance and create database with permissions.**
 	SSH into the EC2 instance and setup mysql. Set the mysql password as root:
-	```bash
+```bash
 	sudo chmod 400 pemfile.pem
 	ssh -i path/to/pemfile.pem ubuntu@ec2-url-or-ip
 	sudo apt-get update
@@ -42,7 +42,7 @@ Login to the instance on the AWS console and edit the security group for the ins
 	mysql -u root -proot
 	GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION; FLUSH PRIVILEGES; CREATE DATABASE IF NOT EXISTS db;
 	exit
-	```
+```
 3. **Modify mysql config to allow for remote connections**
 	```bash
 	sudo nano /etc/mysql/my.cnf
