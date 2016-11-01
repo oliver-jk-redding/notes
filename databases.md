@@ -47,17 +47,17 @@ exit
 ```bash
 sudo nano /etc/mysql/my.cnf
 ```
-	Look for the [mysqld] section. Comment out the following lines:
+Look for the [mysqld] section. Comment out the following lines:
 ```bash
 # skip-external-locking
 # skip-networking
 # bind-address = 127.0.0.1
 ```
-	Another option is to leave the bind-address option uncommented but to change the line to the following:
+Another option is to leave the bind-address option uncommented but to change the line to the following:
 ```bash
 bind-address = 0.0.0.0
 ```
-	Save changes and restart mysql:
+Save changes and restart mysql:
 ```bash
 sudo service mysql restart
 exit
