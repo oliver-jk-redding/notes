@@ -14,6 +14,7 @@ Note: if the database is local, you usually won't need to put the hostname and y
 ```bash
 mysqldump -u root -proot wordpress > dump.sql
 ```
+Use the flag ```--single-transaction``` to not lock the tables while doing the dump. You want to do this if dumping from a live site.
 ###Import database from sql file
 ```bash
 mysql -u $username -p$password -h $hostname -P $port $database_name < $file.sql
