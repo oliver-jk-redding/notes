@@ -25,7 +25,11 @@ sudo -u <user> -i
 ## Permissions
 
 ### Set 755 (drwxr-xr-x) permissions on all directories
+```bash
 find /path/ -type d -exec chmod 755 {} \;
+```
 
 ### Set 644 (-rw-r--r--) permissions on all files
+```bash
 find /path/ -type f -exec chmod 644 {} \;
+```
