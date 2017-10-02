@@ -1,8 +1,8 @@
-#Notes on Databases
+# Notes on Databases
 
-##How to export to and import from a mysql dump
+## How to export to and import from a mysql dump
 
-###Export database to sql file
+### Export database to sql file
 ```bash
 mysqldump -u $username -p$password -h $hostname -P $port $database_name > $file.sql
 ```
@@ -28,7 +28,7 @@ Note: again, if the database is local, you usually won't need to put the hostnam
 mysql -u root -proot wordpress < dump.sql
 ```
 
-##How to connect to an ubuntu EC2 instance via MySQL utility
+## How to connect to an ubuntu EC2 instance via MySQL utility
 1. **Ensure the EC2 instance security settings allow for remote connections.**
 Login to the instance on the AWS console and edit the security group for the instance. Set TCP traffic to allow for connections from either local IP address or all IP addresses (less secure but more flexible).
 2. **Install mysql on instance and create database with permissions.**
@@ -66,4 +66,11 @@ exit
 4. **You should now be able to connect to the instance via the mysql utility**
 ```bash
 mysql -u root -proot -h ec2-url-or-ip
+```
+
+
+## Kill sessions on an existing postgresql database so you can delete the database
+```bash
+psql postgres -c "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'name_of_db';"
+dropdb name_of_db;
 ```
